@@ -1,4 +1,4 @@
-ProjectEuler
+Project Euler
 ============
 
-http://projecteuler.net my solved problems source code
+Source code of my solved problems at http://projecteuler.net
