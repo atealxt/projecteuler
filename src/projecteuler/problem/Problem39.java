@@ -20,23 +20,34 @@ public class Problem39 extends ProblemTemplate {
 	}
 
 	private int getPerimeter(int maxPerimeter) {
+		Map<Integer, MutableInt> mapSolution = getPerimeterSolutionCnt(maxPerimeter);
+		return getPerimeterWithMaxSolution(mapSolution);
+	}
+
+	private Map<Integer, MutableInt> getPerimeterSolutionCnt(int maxPerimeter) {
 		Map<Integer, MutableInt> mapSolution = new HashMap<>();
 		for (int a = 1; a < maxPerimeter; a++) {
 			for (int b = a + 1; b < maxPerimeter - a; b++) {
-				for (int c = b + 1; c <= maxPerimeter - a - b; c++) {
-					if (Math.pow(a, 2) + Math.pow(b, 2) != Math.pow(c, 2)) {
-						continue;
-					}
-					int perimeter = a + b + c;
-					MutableInt count = mapSolution.get(perimeter);
-					if (count != null) {
-						count.increment();
-					} else {
-						mapSolution.put(perimeter, new MutableInt());
-					}
+				double c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+				if (c != (int) c) {
+					continue;
+				}
+				int perimeter = a + b + (int) c;
+				if (perimeter > maxPerimeter) {
+					break;
+				}
+				MutableInt count = mapSolution.get(perimeter);
+				if (count != null) {
+					count.increment();
+				} else {
+					mapSolution.put(perimeter, new MutableInt());
 				}
 			}
 		}
+		return mapSolution;
+	}
+
+	private int getPerimeterWithMaxSolution(Map<Integer, MutableInt> mapSolution) {
 		int max = 0;
 		int pMax = 0;
 		for (Entry<Integer, MutableInt> entry : mapSolution.entrySet()) {
