@@ -20,7 +20,7 @@ public class ProblemRunner {
 			Object obj = clazz.newInstance();
 			System.out.println(obj);
 			String result = (String) clazz.getMethod("getResult").invoke(obj);
-			System.out.println("Result: " + result);
+			System.out.println(" Result: " + result);
 			System.out.println();
 		}
 	}

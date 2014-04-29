@@ -10,12 +10,12 @@ public abstract class ProblemTemplate {
 
 	@Override
 	public String toString() {
-		return "Problem: " + getTitle();
+		return "Problem: " + getTitle() + "\n    URL: http://projecteuler.net/problem=" + getClass().getSimpleName().substring("Problem".length());
 	}
 
 	@Test
 	public void execute() {
 		System.out.println(this);
-		System.out.println("Result: " + getResult());
+		System.out.println(" Result: " + getResult());
 	}
 }
