@@ -15,20 +15,23 @@ public class Problem40 extends ProblemTemplate {
 	}
 
 	private int getValue() {
-		int ret = 1, cnt = 0, start = 1, dn;
-		for (int i = 1; i <= 6; i++) {
+		int ret = 1, cnt = 0, start = 1, dn, i = 1, max = 1000000;
+		while (true) {
 			int end = (int) Math.pow(10, i);
 			for (int j = start; j < end; j++) {
 				dn = getDn(cnt, i, j);
 				ret = dn == NON_CARRY ? ret : ret * dn;
 				cnt += i;
+				if (cnt > max) {
+					return ret;
+				}
 			}
 			dn = getDn(cnt, i + 1, end);
 			ret = dn == NON_CARRY ? ret : ret * dn;
 			cnt += i + 1;
 			start = end + 1;
+			i++;
 		}
-		return ret;
 	}
 
 	private int getDn(int cnt, int i, int num) {
