@@ -1,7 +1,11 @@
 package projecteuler.problem;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+
+import org.junit.Assert;
 
 import projecteuler.ProblemTemplate;
 
@@ -14,7 +18,24 @@ public class Problem41 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		return String.valueOf(getLargestPP());
+		Assert.assertEquals(5040, getPermutation(new int[] { 1, 2, 3, 4, 5, 6, 7 }).size());
+		Assert.assertEquals(getLargestPP(), getLargestPP2());
+		return String.valueOf(getLargestPP2());
+	}
+
+	private int getLargestPP2() {
+		List<Integer> list = getPermutation(new int[] { 1, 2, 3, 4, 5, 6, 7 });
+		Collections.reverse(list);
+		for (int i : list) {
+			if (!Problem7.isPrime(i)) {
+				continue;
+			}
+			if (!isPandigital(String.valueOf(i))) {
+				continue;
+			}
+			return i;
+		}
+		return -1;
 	}
 
 	private int getLargestPP() {
@@ -28,6 +49,19 @@ public class Problem41 extends ProblemTemplate {
 			return i;
 		}
 		return -1;
+	}
+
+	private List<Integer> getPermutation(int[] numbers) {
+		List<Integer> list = new ArrayList<>();
+		int i = numbers.length - 1;
+		while (i != -1) {
+			list.add(Problem30.parseNumber(numbers));
+			i = Problem24.move(numbers, i);
+		}
+		if (numbers.length == 2) {
+			list.add(Problem30.parseNumber(numbers));
+		}
+		return list;
 	}
 
 	/** @see Problem32#isPandigital(String) */

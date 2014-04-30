@@ -42,7 +42,7 @@ public class Problem24 extends ProblemTemplate {
 		return "Not found!";
 	}
 
-	public static int move(int[] array, int i) {
+	static int move(int[] array, int i) {
 		if (array.length <= 1) {
 			return -1;
 		}
