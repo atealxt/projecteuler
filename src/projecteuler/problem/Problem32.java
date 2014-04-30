@@ -32,7 +32,7 @@ public class Problem32 extends ProblemTemplate {
 		Set<Integer> products = new HashSet<>();
 		int sum = 0;
 		for (int i = 2; i < 5000; i++) {
-			for (int j = 2; j < 1000000000 / i; j++) {
+			for (int j = 3; j < 1000000000 / i; j++) {
 				int product = i * j;
 				String s = String.valueOf(i) + String.valueOf(j) + String.valueOf(product);
 				if (s.length() > 9) {
