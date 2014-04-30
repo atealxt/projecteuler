@@ -19,7 +19,6 @@ public class Problem41 extends ProblemTemplate {
 	@Override
 	public String getResult() {
 		Assert.assertEquals(5040, getPermutation(new int[] { 1, 2, 3, 4, 5, 6, 7 }).size());
-		Assert.assertEquals(getLargestPP(), getLargestPP2());
 		return String.valueOf(getLargestPP2());
 	}
 
@@ -38,6 +37,7 @@ public class Problem41 extends ProblemTemplate {
 		return -1;
 	}
 
+	@SuppressWarnings("unused")
 	private int getLargestPP() {
 		for (int i = 7654321; i >= 2143; i--) { // 8 or 9 numbers can always dividable by 3.
 			if (!Problem7.isPrime(i)) {
@@ -65,7 +65,7 @@ public class Problem41 extends ProblemTemplate {
 	}
 
 	/** @see Problem32#isPandigital(String) */
-	static boolean isPandigital(String s) {
+	private boolean isPandigital(String s) {
 		if (s.length() < 2 || s.length() > 9) {
 			return false;
 		}
