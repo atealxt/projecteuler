@@ -16,7 +16,7 @@ public class Problem18 extends ProblemTemplate {
 		return String.valueOf(getMaximumTotal(TRIANGLE));
 	}
 
-	public static int getMaximumTotal(int[][] triangle) {
+	static int getMaximumTotal(int[][] triangle) {
 		int[] sum = triangle[0];
 		for (int i = 0; i < triangle.length - 1; i++) {
 			int[] sum_i = new int[triangle[i + 1].length];

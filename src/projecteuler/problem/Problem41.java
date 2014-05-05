@@ -22,17 +22,13 @@ public class Problem41 extends ProblemTemplate {
 		return String.valueOf(getLargestPP2());
 	}
 
-	private int getLargestPP2() {
-		List<Integer> list = getPermutation(new int[] { 1, 2, 3, 4, 5, 6, 7 });
+	private long getLargestPP2() {
+		List<Long> list = getPermutation(new int[] { 1, 2, 3, 4, 5, 6, 7 });
 		Collections.reverse(list);
-		for (int i : list) {
-			if (!Problem7.isPrime(i)) {
-				continue;
+		for (long i : list) {
+			if (Problem7.isPrime(i)) {
+				return i;
 			}
-			if (!isPandigital(String.valueOf(i))) {
-				continue;
-			}
-			return i;
 		}
 		return -1;
 	}
@@ -51,11 +47,14 @@ public class Problem41 extends ProblemTemplate {
 		return -1;
 	}
 
-	private List<Integer> getPermutation(int[] numbers) {
-		List<Integer> list = new ArrayList<>();
+	static List<Long> getPermutation(int[] numbers) {
+		List<Long> list = new ArrayList<>();
 		int i = numbers.length - 1;
 		while (i != -1) {
-			list.add(Problem30.parseNumber(numbers));
+			long num = Problem30.parseNumber(numbers);
+			if (num >= Math.pow(10, numbers.length - 1)) {
+				list.add(num);
+			}
 			i = Problem24.move(numbers, i);
 		}
 		if (numbers.length == 2) {
@@ -66,13 +65,14 @@ public class Problem41 extends ProblemTemplate {
 
 	/** @see Problem32#isPandigital(String) */
 	private boolean isPandigital(String s) {
-		if (s.length() < 2 || s.length() > 9) {
+		if (s.length() < 2 || s.length() > 10) {
 			return false;
 		}
 		List<String> dic = DIC.get(s.length() - 2);
 		return Arrays.asList(Problem32.DIGIT.split(s)).containsAll(dic);
 	}
 
+	private static final List<String> DIC_0_TO_9 = Arrays.asList(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" });
 	private static final List<String> DIC_9 = Arrays.asList(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" });
 	private static final List<String> DIC_8 = Arrays.asList(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" });
 	private static final List<String> DIC_7 = Arrays.asList(new String[] { "1", "2", "3", "4", "5", "6", "7" });
@@ -81,5 +81,5 @@ public class Problem41 extends ProblemTemplate {
 	private static final List<String> DIC_4 = Arrays.asList(new String[] { "1", "2", "3", "4" });
 	private static final List<String> DIC_3 = Arrays.asList(new String[] { "1", "2", "3" });
 	private static final List<String> DIC_2 = Arrays.asList(new String[] { "1", "2" });
-	private static final List<List<String>> DIC = Arrays.asList(DIC_2, DIC_3, DIC_4, DIC_5, DIC_6, DIC_7, DIC_8, DIC_9);
+	private static final List<List<String>> DIC = Arrays.asList(DIC_2, DIC_3, DIC_4, DIC_5, DIC_6, DIC_7, DIC_8, DIC_9, DIC_0_TO_9);
 }

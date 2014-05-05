@@ -26,6 +26,9 @@ public class Problem30 extends ProblemTemplate {
 		Assert.assertFalse(validNumber(4434, Arrays.asList(1, 3, 4, 8)));
 		Assert.assertEquals(19316, getSumOfNum2(4));
 		Assert.assertEquals(443839, getSumOfNum2(5));
+		Assert.assertArrayEquals(new int[] { 1, 2, 3 }, getNumbers(123));
+		Assert.assertArrayEquals(new int[] { 1, 3, 2 }, getNumbers(132));
+		Assert.assertArrayEquals(new int[] { 5 }, getNumbers(5));
 		return String.valueOf(getSumOfNum2(5));
 	}
 
@@ -35,7 +38,8 @@ public class Problem30 extends ProblemTemplate {
 		int begin = 10;
 		int end = (int) (Math.pow(10, pow + 1) - 1);
 		while (begin++ <= end) {
-			int[] numbers = split(begin);
+			int[] numbers = getNumbers(begin);
+			Arrays.sort(numbers);
 			String cacheKey = Arrays.toString(numbers);
 			if (existCache(cacheKey)) {
 				continue;
@@ -55,17 +59,16 @@ public class Problem30 extends ProblemTemplate {
 		return total;
 	}
 
-	private int[] split(int begin) {
-		String s = String.valueOf(begin);
+	static int[] getNumbers(long num) {
+		String s = String.valueOf(num);
 		int[] arr = new int[s.length()];
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = char2Int(s.charAt(i));
 		}
-		Arrays.sort(arr);
 		return arr;
 	}
 
-	private int char2Int(char c) {
+	private static int char2Int(char c) {
 		return c - 48;
 	}
 
@@ -82,7 +85,7 @@ public class Problem30 extends ProblemTemplate {
 	private boolean hasEq(int[] numbers, int sumOfPowers) {
 		int i = numbers.length - 1;
 		while (i != -1) {
-			int number = parseNumber(numbers);
+			int number = (int) parseNumber(numbers);
 			if (number == sumOfPowers) {
 				if (numbers[0] == 0) {
 					return false;
@@ -95,12 +98,12 @@ public class Problem30 extends ProblemTemplate {
 		return false;
 	}
 
-	static int parseNumber(int[] numbers) {
+	static long parseNumber(int[] numbers) {
 		StringBuilder sb = new StringBuilder();
 		for (int i : numbers) {
 			sb.append(i);
 		}
-		return Integer.parseInt(sb.toString());
+		return Long.parseLong(sb.toString());
 	}
 
 	/** Incorrect implementation with only considered combination (no repeat) case. Keep it in code base for combination algorithm. */
@@ -125,7 +128,7 @@ public class Problem30 extends ProblemTemplate {
 		throw new UnsupportedOperationException("Incorrect implementation");
 	}
 
-	public static List<Integer> getCombination(int[] array, int[] code) {
+	static List<Integer> getCombination(int[] array, int[] code) {
 		List<Integer> combination = new ArrayList<>(array.length);
 		for (int i = 0; i < code.length; i++) {
 			if (code[i] != 0) {
@@ -135,7 +138,7 @@ public class Problem30 extends ProblemTemplate {
 		return combination;
 	}
 
-	public static boolean next(int[] code) {
+	static boolean next(int[] code) {
 		for (int i = code.length - 1; i >= 0; i--) {
 			if (code[i] != 0) {
 				continue;
