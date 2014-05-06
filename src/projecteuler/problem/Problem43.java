@@ -32,7 +32,7 @@ public class Problem43 extends ProblemTemplate {
 
 	private boolean hasProperty(long i) {
 		int[] numbers = Problem30.getNumbers(i);
-		if (numbers[5] != 5) {
+		if (numbers[5] != 5 && numbers[5] != 0) {
 			return false;
 		}
 		if (numbers[3] % 2 != 0) {
