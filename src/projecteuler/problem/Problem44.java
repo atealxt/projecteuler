@@ -46,7 +46,7 @@ public class Problem44 extends ProblemTemplate {
 		}
 	}
 
-	private boolean isPentagon(int number) {
+	static boolean isPentagon(long number) {
 		double y = (Math.sqrt(24 * number + 1) + 1) / 6;
 		return y == (int) y;
 	}
