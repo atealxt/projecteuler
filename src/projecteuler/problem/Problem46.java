@@ -18,15 +18,12 @@ public class Problem46 extends ProblemTemplate {
 	}
 
 	private int getCompositeNum() {
-		int n = 2;
+		int n = 1;
 		List<Integer> primes = new ArrayList<>();
-		while (++n > 0) {
+		while ((n += 2) > 0) {
 			boolean isPrime = Problem7.isPrime(n);
 			if (isPrime) {
 				primes.add(n);
-				continue;
-			}
-			if (n % 2 == 0) {
 				continue;
 			}
 			boolean hit = false;
