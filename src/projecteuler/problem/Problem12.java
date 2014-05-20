@@ -1,6 +1,7 @@
 package projecteuler.problem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import projecteuler.ProblemTemplate;
@@ -45,6 +46,7 @@ public class Problem12 extends ProblemTemplate {
 			}
 		}
 		factors.add(num);
+		Collections.sort(factors);
 		return factors;
 	}
 }
