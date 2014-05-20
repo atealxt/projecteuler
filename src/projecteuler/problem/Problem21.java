@@ -1,5 +1,9 @@
 package projecteuler.problem;
 
+import java.util.List;
+
+import org.junit.Assert;
+
 import projecteuler.ProblemTemplate;
 
 public class Problem21 extends ProblemTemplate {
@@ -11,6 +15,8 @@ public class Problem21 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
+		Assert.assertEquals(220, getSumOfDivisors(getSumOfDivisors(220)));
+		Assert.assertEquals(284, getSumOfDivisors(getSumOfDivisors(284)));
 		return String.valueOf(getSumOfAmicableNum(10000));
 	}
 
@@ -21,8 +27,8 @@ public class Problem21 extends ProblemTemplate {
 			if (cache[a]) {
 				continue;
 			}
-			int b = d(a);
-			int aPrime = d(b);
+			int b = getSumOfDivisors(a);
+			int aPrime = getSumOfDivisors(b);
 			if (a != aPrime || a == b) {
 				continue;
 			}
@@ -32,22 +38,11 @@ public class Problem21 extends ProblemTemplate {
 		return sum;
 	}
 
-	private int d(int n) {
-		return getSumOfDivisors(n);
-	}
-
-	/** @see Problem12#getNumOfFactor */
 	static int getSumOfDivisors(int n) {
-		int sum = 1;
-		int maxLoop = (int) (Math.sqrt(n) + 1);
-		for (int i = 2; i < maxLoop; i++) {
-			if (n % i == 0) {
-				sum += i;
-				int divisor = n / i;
-				if (divisor != i) {
-					sum += divisor;
-				}
-			}
+		List<Integer> factors = Problem12.getFactors(n);
+		int sum = 0;
+		for (int i = 0; i < factors.size() - 1; i++) {
+			sum += factors.get(i);
 		}
 		return sum;
 	}

@@ -1,5 +1,8 @@
 package projecteuler.problem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import projecteuler.ProblemTemplate;
 
 public class Problem12 extends ProblemTemplate {
@@ -22,25 +25,26 @@ public class Problem12 extends ProblemTemplate {
 		int sum = 1;
 		while (true) {
 			sum += i++;
-			if (numOfDivisors < getNumOfFactor(sum)) {
+			if (numOfDivisors < getFactors(sum).size()) {
 				return sum;
 			}
 		}
 	}
 
-	/** @see Problem7#isPrime */
-	private int getNumOfFactor(int num) {
-		int n = 0;
+	static List<Integer> getFactors(int num) {
+		List<Integer> factors = new ArrayList<>();
+		factors.add(1);
 		int maxLoop = (int) (Math.sqrt(num) + 1);
 		for (int i = 2; i < maxLoop; i++) {
 			if (num % i == 0) {
-				n++;
+				factors.add(i);
 				int divisor = num / i;
 				if (divisor != i) {
-					n++;
+					factors.add(divisor);
 				}
 			}
 		}
-		return n + 2;
+		factors.add(num);
+		return factors;
 	}
 }
