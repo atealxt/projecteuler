@@ -37,10 +37,9 @@ public class Problem47 extends ProblemTemplate {
 			List<Integer> primes = new ArrayList<>();
 			for (int i = 1; i < factors.size() - 1; i++) {
 				int factor = factors.get(i);
-				if (!Problem7.isPrime(factor)) {
-					continue;
+				if (Problem7.isPrime(factor)) {
+					primes.add(factor);
 				}
-				primes.add(factor);
 			}
 			if (!isValidFactors(n, primes, len)) {
 				continue;
