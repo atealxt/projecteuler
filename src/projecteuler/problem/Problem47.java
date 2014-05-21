@@ -1,6 +1,5 @@
 package projecteuler.problem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -30,18 +29,8 @@ public class Problem47 extends ProblemTemplate {
 			if (isPrime) {
 				continue;
 			}
-			List<Integer> factors = Problem12.getFactors(n);
-			if (factors.size() - 2 < len) {
-				continue;
-			}
-			List<Integer> primes = new ArrayList<>();
-			for (int i = 1; i < factors.size() - 1; i++) {
-				int factor = factors.get(i);
-				if (Problem3.isPrime(factor)) {
-					primes.add(factor);
-				}
-			}
-			if (!isValidFactors(n, primes, len)) {
+			List<Long> primeFactors = Problem26.getPrimeFactors(n);
+			if (!isValidFactors(n, primeFactors, len)) {
 				continue;
 			}
 			if (isConsecutive(consecution, n)) {
@@ -73,17 +62,17 @@ public class Problem47 extends ProblemTemplate {
 		return true;
 	}
 
-	private boolean isValidFactors(int n, List<Integer> primes, int len) {
-		if (primes.size() != len) {
+	private boolean isValidFactors(int n, List<Long> primeFactors, int len) {
+		if (primeFactors.size() != len) {
 			return false;
 		}
-		int product = 1;
-		for (int p : primes) {
+		long product = 1;
+		for (long p : primeFactors) {
 			product *= p;
 		}
 		if (product == n) {
 			return true;
 		}
-		return primes.contains(n / product);
+		return primeFactors.contains(n / product);
 	}
 }

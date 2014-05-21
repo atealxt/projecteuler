@@ -99,7 +99,7 @@ public class Problem26 extends ProblemTemplate {
 	}
 
 	/** @see Problem3#getLargestPrimeFactor */
-	private List<Long> getPrimeFactors(long num) {
+	static List<Long> getPrimeFactors(long num) {
 		List<Long> primeFactors = new ArrayList<>();
 		long maxLoop = (long) (Math.sqrt(num) + 1);
 		for (long i = maxLoop; i > 1; i--) {
