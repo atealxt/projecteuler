@@ -53,80 +53,6 @@ public class Problem26 extends ProblemTemplate {
 		return decimalOfLongestCycle;
 	}
 
-	private int getCycleLength(String str) {
-		int start = 0;
-		do {
-			int loop = 1;
-			do {
-				String piece = str.substring(start, start + loop);
-				boolean isCycle = true;
-				for (int i = start + loop; i < str.length() - loop; i += loop) {
-					if (!piece.equals(str.substring(i, i + loop))) {
-						isCycle = false;
-						break;
-					}
-				}
-				if (isCycle) {
-					return loop;
-				}
-				++loop;
-			} while (start + loop < str.length() - loop);
-		} while (++start < str.length() - 1);
-		throw new RuntimeException("Cycle not found!");
-	}
-
-	/** @see Problem3#getLargestPrimeFactor */
-	private List<Long> getPrimeFactors(long number) {
-		long smallestPrimeFactor = -1;
-		long largestPrimeFactor = -1;
-		List<Long> primeFactors = new ArrayList<>();
-		long maxFactor = (long) (Math.sqrt(number) + 1);
-		for (long i = 2; i < number; i++) {
-			if (number % i != 0) {
-				continue;
-			}
-			if (smallestPrimeFactor == -1) {
-				largestPrimeFactor = smallestPrimeFactor = i;
-				primeFactors.add(i);
-				continue;
-			}
-			if (i % smallestPrimeFactor == 0) {
-				continue;
-			}
-			if (!isPrime(primeFactors, i)) {
-				break;
-			}
-			largestPrimeFactor = i;
-			primeFactors.add(i);
-			if (i > 5) {
-				// don't need to calculate any more for this specific problem.
-				break;
-			}
-			if (largestPrimeFactor >= maxFactor) {
-				break;
-			}
-		}
-		return primeFactors;
-	}
-
-	private boolean have2Or5(List<Long> primeFactor) {
-		for (long i : primeFactor) {
-			if (i == 2 || i == 5) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private boolean haveOther(List<Long> primeFactor) {
-		for (long i : primeFactor) {
-			if (i != 2 && i != 5) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	private int getDecimalOfLongestCycleMath(int n) {
 		int i, j, len, maxlen, maxn = 0;
 		maxlen = 0;
@@ -150,12 +76,65 @@ public class Problem26 extends ProblemTemplate {
 		return maxn;
 	}
 
-	private boolean isPrime(List<Long> primeFactors, long factor) {
-		for (Long primeFactor : primeFactors) {
-			if (factor % primeFactor == 0) {
-				return false;
+	private int getCycleLength(String str) {
+		int start = 0;
+		do {
+			int loop = 1;
+			do {
+				String piece = str.substring(start, start + loop);
+				boolean isCycle = true;
+				for (int i = start + loop; i < str.length() - loop; i += loop) {
+					if (!piece.equals(str.substring(i, i + loop))) {
+						isCycle = false;
+						break;
+					}
+				}
+				if (isCycle) {
+					return loop;
+				}
+				++loop;
+			} while (start + loop < str.length() - loop);
+		} while (++start < str.length() - 1);
+		throw new RuntimeException("Cycle not found!");
+	}
+
+	/** @see Problem3#getLargestPrimeFactor */
+	private List<Long> getPrimeFactors(long num) {
+		List<Long> primeFactors = new ArrayList<>();
+		long maxLoop = (long) (Math.sqrt(num) + 1);
+		for (long i = maxLoop; i > 1; i--) {
+			if (num % i != 0) {
+				continue;
+			}
+			long divisor = num / i;
+			if (Problem3.isPrime(divisor)) {
+				primeFactors.add(divisor);
+			}
+			if (divisor == i) {
+				continue;
+			}
+			if (Problem3.isPrime(i)) {
+				primeFactors.add(i);
 			}
 		}
-		return true;
+		return primeFactors;
+	}
+
+	private boolean have2Or5(List<Long> primeFactor) {
+		for (long i : primeFactor) {
+			if (i == 2 || i == 5) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean haveOther(List<Long> primeFactor) {
+		for (long i : primeFactor) {
+			if (i != 2 && i != 5) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

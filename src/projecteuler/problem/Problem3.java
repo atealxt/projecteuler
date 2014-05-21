@@ -1,5 +1,8 @@
 package projecteuler.problem;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Assert;
 
 import projecteuler.ProblemTemplate;
@@ -37,7 +40,19 @@ public class Problem3 extends ProblemTemplate {
 		return -1;
 	}
 
+	private static Map<Long, Boolean> PRIME_CACHE = new HashMap<>();
+
 	static boolean isPrime(long n) {
+		Boolean cache = PRIME_CACHE.get(n);
+		if (cache != null) {
+			return cache;
+		}
+		boolean isPrime = checkIsPrime(n);
+		PRIME_CACHE.put(n, isPrime);
+		return isPrime;
+	}
+
+	private static boolean checkIsPrime(long n) {
 		if (n == 1) {
 			return false;
 		} else if (n < 4) {
