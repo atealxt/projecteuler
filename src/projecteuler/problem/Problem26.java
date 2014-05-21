@@ -54,26 +54,24 @@ public class Problem26 extends ProblemTemplate {
 	}
 
 	private int getDecimalOfLongestCycleMath(int n) {
-		int i, j, len, maxlen, maxn = 0;
-		maxlen = 0;
-		for (i = 2; i < n; i++) {
+		int x = 0, maxlen = 0;
+		for (int i = 2; i < n; i++) {
 			int rest = 1;
-			int r0;
-			for (j = 0; j < i; j++) {
+			for (int j = 0; j < i; j++) {
 				rest = rest * 10 % i;
 			}
-			r0 = rest;
-			len = 0;
+			int r0 = rest;
+			int len = 0;
 			do {
 				rest = rest * 10 % i;
 				len++;
 			} while (rest != r0);
 			if (len > maxlen) {
-				maxn = i;
+				x = i;
 				maxlen = len;
 			}
 		}
-		return maxn;
+		return x;
 	}
 
 	private int getCycleLength(String str) {
