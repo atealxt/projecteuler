@@ -26,7 +26,7 @@ public class Problem41 extends ProblemTemplate {
 		List<Long> list = getPermutation(new int[] { 1, 2, 3, 4, 5, 6, 7 });
 		Collections.reverse(list);
 		for (long i : list) {
-			if (Problem7.isPrime(i)) {
+			if (Problem3.isPrime(i)) {
 				return i;
 			}
 		}
@@ -36,7 +36,7 @@ public class Problem41 extends ProblemTemplate {
 	@SuppressWarnings("unused")
 	private int getLargestPP() {
 		for (int i = 7654321; i >= 2143; i--) { // 8 or 9 numbers can always dividable by 3.
-			if (!Problem7.isPrime(i)) {
+			if (!Problem3.isPrime(i)) {
 				continue;
 			}
 			if (!isPandigital(String.valueOf(i))) {

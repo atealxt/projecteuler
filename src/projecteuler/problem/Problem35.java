@@ -28,7 +28,7 @@ public class Problem35 extends ProblemTemplate {
 			int[] rotations = getRotations(i);
 			boolean isCircularPrime = true;
 			for (int n : rotations) {
-				if (!Problem7.isPrime(n)) {
+				if (!Problem3.isPrime(n)) {
 					isCircularPrime = false;
 					break;
 				}

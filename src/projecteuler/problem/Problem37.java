@@ -37,12 +37,12 @@ public class Problem37 extends ProblemTemplate {
 	private boolean isTruncatable(int n) {
 		String s = String.valueOf(n);
 		for (int i = 0; i < s.length(); i++) {
-			if (!Problem7.isPrime(Integer.valueOf(s.substring(i)))) {
+			if (!Problem3.isPrime(Integer.valueOf(s.substring(i)))) {
 				return false;
 			}
 		}
 		for (int i = s.length() - 1; i >= 0; i--) {
-			if (!Problem7.isPrime(Integer.valueOf(s.substring(0, s.length() - i)))) {
+			if (!Problem3.isPrime(Integer.valueOf(s.substring(0, s.length() - i)))) {
 				return false;
 			}
 		}

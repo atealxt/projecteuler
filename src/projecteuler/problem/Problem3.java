@@ -1,8 +1,5 @@
 package projecteuler.problem;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Assert;
 
 import projecteuler.ProblemTemplate;
@@ -23,38 +20,41 @@ public class Problem3 extends ProblemTemplate {
 		return String.valueOf(getLargestPrimeFactor(600851475143L));// 6857
 	}
 
-	private long getLargestPrimeFactor(long number) {
-		long smallestPrimeFactor = -1;
-		long largestPrimeFactor = -1;
-		List<Long> primeFactors = new ArrayList<>();
-		long maxFactor = (long) (Math.sqrt(number) + 1);
-		for (long i = 2; i < number; i++) {
-			if (number % i != 0) {
+	private long getLargestPrimeFactor(long num) {
+		long maxLoop = (long) (Math.sqrt(num) + 1);
+		for (long i = maxLoop; i > 1; i--) {
+			if (num % i != 0) {
 				continue;
 			}
-			if (smallestPrimeFactor == -1) {
-				// the first factor is prime
-				largestPrimeFactor = smallestPrimeFactor = i;
-				continue;
+			long divisor = num / i;
+			if (isPrime(divisor)) {
+				return divisor;
 			}
-			if (i % smallestPrimeFactor == 0) {
-				continue;
+			if (isPrime(i)) {
+				return i;
 			}
-			if (!isPrime(primeFactors, i)) {
-				break;
-			}
-			largestPrimeFactor = i;
-			if (largestPrimeFactor >= maxFactor) {
-				break;
-			}
-			primeFactors.add(i);
 		}
-		return largestPrimeFactor;
+		return -1;
 	}
 
-	static boolean isPrime(List<Long> primeFactors, long factor) {
-		for (Long primeFactor : primeFactors) {
-			if (factor % primeFactor == 0) {
+	static boolean isPrime(long n) {
+		if (n == 1) {
+			return false;
+		} else if (n < 4) {
+			return true;
+		} else if (n % 2 == 0) {
+			return false;
+		} else if (n < 9) {
+			return true;
+		} else if (n % 3 == 0) {
+			return false;
+		}
+		long maxLoop = (long) (Math.sqrt(n) + 1);
+		for (long i = 5; i < maxLoop; i += 6) {
+			if (n % i == 0) {
+				return false;
+			}
+			if (n % (i + 2) == 0) {
 				return false;
 			}
 		}

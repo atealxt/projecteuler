@@ -26,7 +26,7 @@ public class Problem47 extends ProblemTemplate {
 		int[] consecution = new int[len];
 		int cNumber = 0;
 		for (int n = 2;; n++) {
-			boolean isPrime = Problem7.isPrime(n);
+			boolean isPrime = Problem3.isPrime(n);
 			if (isPrime) {
 				continue;
 			}
@@ -37,7 +37,7 @@ public class Problem47 extends ProblemTemplate {
 			List<Integer> primes = new ArrayList<>();
 			for (int i = 1; i < factors.size() - 1; i++) {
 				int factor = factors.get(i);
-				if (Problem7.isPrime(factor)) {
+				if (Problem3.isPrime(factor)) {
 					primes.add(factor);
 				}
 			}

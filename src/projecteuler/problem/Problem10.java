@@ -21,7 +21,7 @@ public class Problem10 extends ProblemTemplate {
 		long sum = 2;
 		long i = 3;
 		while (true) {
-			if (Problem7.isPrime(i)) {
+			if (Problem3.isPrime(i)) {
 				sum += i;
 			}
 			i += 2;// All primes except 2 are odd.

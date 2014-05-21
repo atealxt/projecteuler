@@ -22,7 +22,7 @@ public class Problem27 extends ProblemTemplate {
 				int numOfPrime = 0;
 				for (int n = 0;; n++) {
 					int x = n * n + i * n + j;
-					if (!Problem7.isPrime(x)) {
+					if (!Problem3.isPrime(x)) {
 						break;
 					}
 					numOfPrime++;

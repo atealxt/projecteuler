@@ -20,7 +20,7 @@ public class Problem34 extends ProblemTemplate {
 	private int getSumOfNumbers() {
 		int sum = 0;
 		int maxLoop = Problem15.factorial(9).intValue();
-		for (int i = 10; i < maxLoop; i++) {
+		for (int i = 10; i <= maxLoop; i++) {
 			if (isCurious(i)) {
 				sum += i;
 			}

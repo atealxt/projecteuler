@@ -21,7 +21,7 @@ public class Problem46 extends ProblemTemplate {
 		int n = 1;
 		List<Integer> primes = new ArrayList<>();
 		while ((n += 2) > 0) {
-			boolean isPrime = Problem7.isPrime(n);
+			boolean isPrime = Problem3.isPrime(n);
 			if (isPrime) {
 				primes.add(n);
 				continue;

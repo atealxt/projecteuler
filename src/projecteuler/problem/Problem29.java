@@ -64,11 +64,6 @@ public class Problem29 extends ProblemTemplate {
 			}
 			int bPlus = b * root;
 			if (bPlus <= max) {
-				// System.out.print("(" + a + ")^(" + b + ") ");
-				// System.out.print("(" + i + "^" + root + ")^(" + b + ") ");
-				// System.out.print("(" + i + ")^(" + b + "*" + root + ") ");
-				// System.out.print("(" + i + ")^(" + bPlus + ") ");
-				// System.out.println();
 				return true;
 			} else {
 				for (int j = (int) Math.sqrt(bPlus); j >= 2; j--) {
@@ -82,13 +77,6 @@ public class Problem29 extends ProblemTemplate {
 						return false;
 					}
 					if (Math.pow(i, j) <= a) {
-						// System.out.print("(" + a + ")^(" + b + ") ");
-						// System.out.print("(" + i + "^" + root + ")^(" + b + ") ");
-						// System.out.print("(" + i + ")^(" + b + "*" + root + ") ");
-						// System.out.print("(" + i + ")^(" + bPlus + ") ");
-						// System.out.print("(" + i + "^" + j + ")^(" + bPlus + "/" + j + ") ");
-						// System.out.print("(" + (int)Math.pow(i, j) + ")^(" + bPlus / j + ") ");
-						// System.out.println();
 						return true;
 					}
 				}

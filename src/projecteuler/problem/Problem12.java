@@ -36,7 +36,7 @@ public class Problem12 extends ProblemTemplate {
 		List<Integer> factors = new ArrayList<>();
 		factors.add(1);
 		int maxLoop = (int) (Math.sqrt(num) + 1);
-		for (int i = 2; i < maxLoop; i++) {
+		for (int i = 2; i <= maxLoop; i++) {
 			if (num % i == 0) {
 				factors.add(i);
 				int divisor = num / i;

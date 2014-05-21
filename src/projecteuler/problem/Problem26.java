@@ -93,7 +93,7 @@ public class Problem26 extends ProblemTemplate {
 			if (i % smallestPrimeFactor == 0) {
 				continue;
 			}
-			if (!Problem3.isPrime(primeFactors, i)) {
+			if (!isPrime(primeFactors, i)) {
 				break;
 			}
 			largestPrimeFactor = i;
@@ -148,5 +148,14 @@ public class Problem26 extends ProblemTemplate {
 			}
 		}
 		return maxn;
+	}
+
+	private boolean isPrime(List<Long> primeFactors, long factor) {
+		for (Long primeFactor : primeFactors) {
+			if (factor % primeFactor == 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
