@@ -85,6 +85,6 @@ public class Problem47 extends ProblemTemplate {
 		if (product == n) {
 			return true;
 		}
-		return n % product == 0 && primes.contains(n / product);
+		return primes.contains(n / product);
 	}
 }
