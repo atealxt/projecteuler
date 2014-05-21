@@ -98,7 +98,6 @@ public class Problem26 extends ProblemTemplate {
 		throw new RuntimeException("Cycle not found!");
 	}
 
-	/** @see Problem3#getLargestPrimeFactor */
 	static List<Long> getPrimeFactors(long num) {
 		List<Long> primeFactors = new ArrayList<>();
 		long maxLoop = (long) (Math.sqrt(num) + 1);
