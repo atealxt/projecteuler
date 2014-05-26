@@ -13,9 +13,31 @@ public class Problem48 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		return String.valueOf(getlastNDigits(10));
+		return String.valueOf(getlastNDigits2(1000, 10));
 	}
 
+	private String getlastNDigits2(int pow, int len) {
+		long mod = getMOD(len);
+		long sum = 0;
+		for (int i = 1; i <= pow; i++) {
+			long x = i;
+			for (int j = 1; j < i; j++) {
+				x = x * i % mod;
+			}
+			sum = (sum + x) % mod;
+		}
+		return Long.toString(sum);
+	}
+
+	private long getMOD(int len) {
+		long mod = 1;
+		for (int i = 0; i < len; i++) {
+			mod *= 10;
+		}
+		return mod;
+	}
+
+	@SuppressWarnings("unused")
 	private String getlastNDigits(int len) {
 		BigInteger sum = BigInteger.ZERO;
 		for (int i = 1; i <= 1000; i++) {
