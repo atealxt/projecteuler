@@ -37,7 +37,7 @@ public class Problem49 extends ProblemTemplate {
 							continue;
 						}
 						if (primes.size() == 3) {
-							if (isArithmeticSequence(primes) && primes.get(0) > min) {
+							if (isEqDistance(primes) && primes.get(0) > min) {
 								return primes.toString().replaceAll("[\\s\\[\\],]", "");
 							}
 						} else {
@@ -47,7 +47,7 @@ public class Problem49 extends ProblemTemplate {
 								if (combination.size() != 3) {
 									continue;
 								}
-								if (isArithmeticSequence(combination) && combination.get(0) > min) {
+								if (isEqDistance(combination) && combination.get(0) > min) {
 									return combination.toString().replaceAll("[\\s\\[\\],]", "");
 								}
 							}
@@ -59,7 +59,7 @@ public class Problem49 extends ProblemTemplate {
 		return "";
 	}
 
-	private boolean isArithmeticSequence(List<Integer> primes) {
+	private boolean isEqDistance(List<Integer> primes) {
 		return primes.get(2) - primes.get(1) == primes.get(1) - primes.get(0);
 	}
 
