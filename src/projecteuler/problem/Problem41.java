@@ -48,6 +48,12 @@ public class Problem41 extends ProblemTemplate {
 	}
 
 	static List<Long> getPermutation(int[] numbers) {
+		if (numbers.length == 0) {
+			return Collections.emptyList();
+		}
+		if (numbers.length == 1) {
+			return Arrays.asList((long) numbers[0]);
+		}
 		List<Long> list = new ArrayList<>();
 		int i = numbers.length - 1;
 		while (i != -1) {

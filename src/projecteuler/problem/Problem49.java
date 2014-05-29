@@ -1,7 +1,10 @@
 package projecteuler.problem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Assert;
 
@@ -16,10 +19,57 @@ public class Problem49 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals("148748178147", getConcatenatingSequence(0));
-		return String.valueOf(getConcatenatingSequence(1488));
+		Assert.assertEquals("148748178147", getConcatenatingSequence2(0));
+		return String.valueOf(getConcatenatingSequence2(1488));
 	}
 
+	private String getConcatenatingSequence2(int min) {
+		Set<Long> cache = new HashSet<>();
+		for (int i = min;; i++) {
+			if (!Problem3.isPrime(i)) {
+				continue;
+			}
+			int[] numbers = Problem30.getNumbers(i);
+			Arrays.sort(numbers);
+			List<Long> permutations = Problem41.getPermutation(numbers);
+			if (!cache.add(permutations.get(0))) {
+				continue;
+			}
+			List<Integer> primes = new ArrayList<>();
+			for (Long p : permutations) {
+				if (Problem3.isPrime(p)) {
+					primes.add(p.intValue());
+				}
+			}
+			if (primes.size() < 3) {
+				continue;
+			}
+			int[] array = toIntArray(primes);
+			List<List<Integer>> combinations = Problem31.getCombinations(array);
+			for (List<Integer> combination : combinations) {
+				if (combination.size() != 3) {
+					continue;
+				}
+				if (isEqDistance(combination) && combination.get(0) > min) {
+					return combination.toString().replaceAll("[\\s\\[\\],]", "");
+				}
+			}
+		}
+	}
+
+	private boolean isEqDistance(List<Integer> primes) {
+		return primes.get(2) - primes.get(1) == primes.get(1) - primes.get(0);
+	}
+
+	static int[] toIntArray(List<Integer> integerList) {
+		int[] intArray = new int[integerList.size()];
+		for (int i = 0; i < integerList.size(); i++) {
+			intArray[i] = integerList.get(i);
+		}
+		return intArray;
+	}
+
+	@SuppressWarnings("unused")
 	private String getConcatenatingSequence(int min) {
 		for (int i = 1; i <= 9; i++) {
 			for (int j = i + 1; j <= 9; j++) {
@@ -36,38 +86,20 @@ public class Problem49 extends ProblemTemplate {
 						if (primes.size() < 3) {
 							continue;
 						}
-						if (primes.size() == 3) {
-							if (isEqDistance(primes) && primes.get(0) > min) {
-								return primes.toString().replaceAll("[\\s\\[\\],]", "");
+						int[] array = toIntArray(primes);
+						List<List<Integer>> combinations = Problem31.getCombinations(array);
+						for (List<Integer> combination : combinations) {
+							if (combination.size() != 3) {
+								continue;
 							}
-						} else {
-							int[] array = toIntArray(primes);
-							List<List<Integer>> combinations = Problem31.getCombinations(array);
-							for (List<Integer> combination : combinations) {
-								if (combination.size() != 3) {
-									continue;
-								}
-								if (isEqDistance(combination) && combination.get(0) > min) {
-									return combination.toString().replaceAll("[\\s\\[\\],]", "");
-								}
+							if (isEqDistance(combination) && combination.get(0) > min) {
+								return combination.toString().replaceAll("[\\s\\[\\],]", "");
 							}
 						}
 					}
 				}
 			}
 		}
-		return "";
-	}
-
-	private boolean isEqDistance(List<Integer> primes) {
-		return primes.get(2) - primes.get(1) == primes.get(1) - primes.get(0);
-	}
-
-	static int[] toIntArray(List<Integer> integerList) {
-		int[] intArray = new int[integerList.size()];
-		for (int i = 0; i < integerList.size(); i++) {
-			intArray[i] = integerList.get(i);
-		}
-		return intArray;
+		return "NOT FOUND";
 	}
 }
