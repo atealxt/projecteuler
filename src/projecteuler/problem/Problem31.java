@@ -19,8 +19,8 @@ public class Problem31 extends ProblemTemplate {
 
 	private int getNumOfWays(int sumPence) {
 		int sumWays = 0;
-		while (Problem30.next(CODE)) {
-			List<Integer> combination = Problem30.getCombination(ARRAY, CODE);
+		List<List<Integer>> combinations = getCombinations(ARRAY);
+		for (List<Integer> combination : combinations) {
 			int ways = getWays(sumPence, combination);
 			sumWays += ways;
 		}
@@ -47,6 +47,60 @@ public class Problem31 extends ProblemTemplate {
 		return ways;
 	}
 
+	static List<List<Integer>> getCombinations(int[] array) {
+		List<List<Integer>> combinations = new ArrayList<>();
+		int[] code = new int[array.length];
+		while (next(code)) {
+			List<Integer> combination = getCombination(array, code);
+			combinations.add(combination);
+		}
+		return combinations;
+	}
+
+	private static List<Integer> getCombination(int[] array, int[] code) {
+		List<Integer> combination = new ArrayList<>(array.length);
+		for (int i = 0; i < code.length; i++) {
+			if (code[i] != 0) {
+				combination.add(array[i]);
+			}
+		}
+		return combination;
+	}
+
+	private static boolean next(int[] code) {
+		for (int i = code.length - 1; i >= 0; i--) {
+			if (code[i] != 0) {
+				continue;
+			}
+			for (int j = i - 1; j >= 0; j--) {
+				if (code[j] == 1) {
+					code[j] = 0;
+					code[j + 1] = 1;
+					move1ToHead(code, j + 2);
+					return true;
+				}
+			}
+			code[0] = 1;
+			move1ToHead(code, 1);
+			return true;
+		}
+		return false;
+	}
+
+	private static void move1ToHead(int[] code, int range) {
+		for (int i = code.length - 1; i > range; i--) {
+			if (code[i] == 0) {
+				continue;
+			}
+			for (int j = range; j < i; j++) {
+				if (code[j] == 0) {
+					code[j] = 1;
+					code[i] = 0;
+					break;
+				}
+			}
+		}
+	}
+
 	private static int[] ARRAY = { 1, 2, 5, 10, 20, 50, 100, 200 };
-	private static int[] CODE = { 0, 0, 0, 0, 0, 0, 0, 0 };
 }

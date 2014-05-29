@@ -13,10 +13,10 @@ public class Problem48 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		return String.valueOf(getlastNDigits2(1000, 10));
+		return String.valueOf(getLastNDigits2(1000, 10));
 	}
 
-	private String getlastNDigits2(int pow, int len) {
+	private String getLastNDigits2(int pow, int len) {
 		long mod = getMOD(len);
 		long sum = 0;
 		for (int i = 1; i <= pow; i++) {
@@ -38,7 +38,7 @@ public class Problem48 extends ProblemTemplate {
 	}
 
 	@SuppressWarnings("unused")
-	private String getlastNDigits(int len) {
+	private String getLastNDigits(int len) {
 		BigInteger sum = BigInteger.ZERO;
 		for (int i = 1; i <= 1000; i++) {
 			sum = sum.add(new BigInteger(String.valueOf(i)).pow(i));

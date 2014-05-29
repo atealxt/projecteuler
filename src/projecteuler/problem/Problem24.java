@@ -21,22 +21,22 @@ public class Problem24 extends ProblemTemplate {
 		return String.valueOf(getPermutation(1000000));
 	}
 
-	private String getPermutation(int n) {
-		return getLexicographicPermutation(DIC, n);
+	private String getPermutation(int nth) {
+		return getLexicographicPermutation(DIC, nth);
 	}
 
 	/** Base on ASC ordered */
-	private String getLexicographicPermutation(int[] arr, int n) {
+	private String getLexicographicPermutation(int[] arr, int nth) {
 		int[] array = Arrays.copyOf(arr, arr.length);
 		int i = array.length - 1;
 		int cnt = 0;
 		do {
-			if (++cnt == n) {
+			if (++cnt == nth) {
 				return Arrays.toString(array);
 			}
 			i = move(array, i);
 		} while (i != -1);
-		if (cnt == n) {
+		if (cnt == nth) {
 			return Arrays.toString(array);
 		}
 		return "Not found!";
