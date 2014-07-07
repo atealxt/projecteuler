@@ -23,8 +23,8 @@ public class Problem51 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals(56003, getFirstMember(7));
 		Assert.assertEquals(13, getFirstMember(6));
+		Assert.assertEquals(56003, getFirstMember(7));
 		return String.valueOf(getFirstMember(8));
 	}
 
