@@ -11,10 +11,6 @@ import projecteuler.ProblemTemplate;
 
 public class Problem51 extends ProblemTemplate {
 
-	private final Map<String, List<Integer>> CACHE = new ConcurrentHashMap<>();
-	private static final int MAX_LEN = 6;
-	private static final int MAX_VALUE = 999999;
-
 	@Override
 	public String getTitle() {
 		return "Prime digit replacements";
@@ -28,7 +24,7 @@ public class Problem51 extends ProblemTemplate {
 	}
 
 	private int getFirstMember(int numOfFamily) {
-		for (int i = 10; i <= MAX_VALUE; i++) {
+		for (int i = 10;; i++) {
 			int len = String.valueOf(i).length();
 			List<List<Integer>> stars = Problem31.getCombinations(range(0, len));
 			stars.remove(stars.size() - 1);
@@ -39,7 +35,6 @@ public class Problem51 extends ProblemTemplate {
 				}
 			}
 		}
-		return -1;
 	}
 
 	private List<Integer> getFamily(int n, List<Integer> star) {
@@ -61,22 +56,13 @@ public class Problem51 extends ProblemTemplate {
 	}
 
 	private boolean applyZero(String key) {
-		for (int i = 0; i < key.length(); i++) {
-			if (key.charAt(i) == '0') {
-				continue;
-			}
-			return key.charAt(i) != '*';
-		}
-		return false;
+		return !key.startsWith("*");
 	}
 
 	private String getKey(int n, List<Integer> star) {
 		StringBuilder key = new StringBuilder(String.valueOf(n));
 		for (Integer x : star) {
 			key.setCharAt(x, '*');
-		}
-		for (int i = 0; i < MAX_LEN - String.valueOf(n).length(); i++) {
-			key.insert(0, "0");
 		}
 		return key.toString();
 	}
@@ -88,4 +74,6 @@ public class Problem51 extends ProblemTemplate {
 		}
 		return array;
 	}
+
+	private final Map<String, List<Integer>> CACHE = new ConcurrentHashMap<>();
 }
