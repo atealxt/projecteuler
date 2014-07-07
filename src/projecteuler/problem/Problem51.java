@@ -43,8 +43,7 @@ public class Problem51 extends ProblemTemplate {
 			return CACHE.get(key);
 		}
 		List<Integer> family = new ArrayList<>();
-		int i = applyZero(key) ? 0 : 1;
-		for (; i < 10; i++) {
+		for (int i = !key.startsWith("*") ? 0 : 1; i < 10; i++) {
 			String s = key.replace("*", String.valueOf(i));
 			int x = Integer.parseInt(s);
 			if (Problem3.isPrime(x)) {
@@ -53,10 +52,6 @@ public class Problem51 extends ProblemTemplate {
 		}
 		CACHE.put(key, family);
 		return family;
-	}
-
-	private boolean applyZero(String key) {
-		return !key.startsWith("*");
 	}
 
 	private String getKey(int n, List<Integer> star) {
