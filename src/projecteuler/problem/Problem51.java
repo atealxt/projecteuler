@@ -30,8 +30,7 @@ public class Problem51 extends ProblemTemplate {
 
 	private int getFirstMember(int numOfFamily) {
 		for (int i = 10; i <= MAX_VALUE; i++) {
-			int[] numbers = Problem30.getNumbers(i);
-			int len = numbers.length;
+			int len = String.valueOf(i).length();
 			List<List<Integer>> stars = Problem31.getCombinations(range(0, len));
 			stars.remove(stars.size() - 1);
 			for (List<Integer> star : stars) {
