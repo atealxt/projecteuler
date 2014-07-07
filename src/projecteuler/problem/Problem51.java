@@ -14,7 +14,6 @@ public class Problem51 extends ProblemTemplate {
 	private final Map<String, List<Integer>> CACHE = new ConcurrentHashMap<>();
 	private static final int MAX_LEN = 6;
 	private static final int MAX_VALUE = 999999;
-	private static final boolean[][][][][][] matrixs = buildPrimes();
 
 	@Override
 	public String getTitle() {
@@ -34,7 +33,7 @@ public class Problem51 extends ProblemTemplate {
 			List<List<Integer>> stars = Problem31.getCombinations(range(0, len));
 			stars.remove(stars.size() - 1);
 			for (List<Integer> star : stars) {
-				List<Integer> family = getFamily(i, star, matrixs);
+				List<Integer> family = getFamily(i, star);
 				if (family.size() == numOfFamily) {
 					return family.get(0);
 				}
@@ -43,7 +42,7 @@ public class Problem51 extends ProblemTemplate {
 		return -1;
 	}
 
-	private List<Integer> getFamily(int n, List<Integer> star, boolean[][][][][][] matrix) {
+	private List<Integer> getFamily(int n, List<Integer> star) {
 		String key = getKey(n, star);
 		if (CACHE.containsKey(key)) {
 			return CACHE.get(key);
@@ -52,21 +51,13 @@ public class Problem51 extends ProblemTemplate {
 		int i = applyZero(key) ? 0 : 1;
 		for (; i < 10; i++) {
 			String s = key.replace("*", String.valueOf(i));
-			int[] idx = getIndex(s);
-			if (matrix[idx[0]][idx[1]][idx[2]][idx[3]][idx[4]][idx[5]]) {
-				family.add(Integer.parseInt(s));
+			int x = Integer.parseInt(s);
+			if (Problem3.isPrime(x)) {
+				family.add(x);
 			}
 		}
 		CACHE.put(key, family);
 		return family;
-	}
-
-	private int[] getIndex(String s) {
-		int[] idx = new int[s.length()];
-		for (int i = 0; i < s.length(); i++) {
-			idx[i] = Integer.parseInt(String.valueOf(s.charAt(i)));
-		}
-		return idx;
 	}
 
 	private boolean applyZero(String key) {
@@ -88,23 +79,6 @@ public class Problem51 extends ProblemTemplate {
 			key.insert(0, "0");
 		}
 		return key.toString();
-	}
-
-	private static boolean[][][][][][] buildPrimes() {
-		boolean[][][][][][] matrix = new boolean[10][10][10][10][10][10];
-		for (int i = 2; i <= MAX_VALUE; i++) {
-			boolean prime = Problem3.isPrime(i);
-			int[] numbers = filledNumbers(i);
-			matrix[numbers[0]][numbers[1]][numbers[2]][numbers[3]][numbers[4]][numbers[5]] = prime;
-		}
-		return matrix;
-	}
-
-	private static int[] filledNumbers(int i) {
-		int[] numbers = Problem30.getNumbers(i);
-		int[] filledNumbers = new int[] { 0, 0, 0, 0, 0, 0 };
-		System.arraycopy(numbers, 0, filledNumbers, filledNumbers.length - numbers.length, numbers.length);
-		return filledNumbers;
 	}
 
 	private int[] range(int start, int end) {
