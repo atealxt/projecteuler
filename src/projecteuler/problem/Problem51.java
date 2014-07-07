@@ -14,6 +14,7 @@ public class Problem51 extends ProblemTemplate {
 	private final Map<String, List<Integer>> CACHE = new ConcurrentHashMap<>();
 	private static final int MAX_LEN = 6;
 	private static final int MAX_VALUE = 999999;
+	private static final boolean[][][][][][] matrixs = buildPrimes();
 
 	@Override
 	public String getTitle() {
@@ -28,14 +29,13 @@ public class Problem51 extends ProblemTemplate {
 	}
 
 	private int getFirstMember(int numOfFamily) {
-		boolean[][][][][][] matrix = buildPrimes();
 		for (int i = 10; i <= MAX_VALUE; i++) {
 			int[] numbers = Problem30.getNumbers(i);
 			int len = numbers.length;
 			List<List<Integer>> stars = Problem31.getCombinations(range(0, len));
 			stars.remove(stars.size() - 1);
 			for (List<Integer> star : stars) {
-				List<Integer> family = getFamily(i, star, matrix);
+				List<Integer> family = getFamily(i, star, matrixs);
 				if (family.size() == numOfFamily) {
 					return family.get(0);
 				}
@@ -91,7 +91,7 @@ public class Problem51 extends ProblemTemplate {
 		return key.toString();
 	}
 
-	private boolean[][][][][][] buildPrimes() {
+	private static boolean[][][][][][] buildPrimes() {
 		boolean[][][][][][] matrix = new boolean[10][10][10][10][10][10];
 		for (int i = 2; i <= MAX_VALUE; i++) {
 			boolean prime = Problem3.isPrime(i);
@@ -101,7 +101,7 @@ public class Problem51 extends ProblemTemplate {
 		return matrix;
 	}
 
-	private int[] filledNumbers(int i) {
+	private static int[] filledNumbers(int i) {
 		int[] numbers = Problem30.getNumbers(i);
 		int[] filledNumbers = new int[] { 0, 0, 0, 0, 0, 0 };
 		System.arraycopy(numbers, 0, filledNumbers, filledNumbers.length - numbers.length, numbers.length);
