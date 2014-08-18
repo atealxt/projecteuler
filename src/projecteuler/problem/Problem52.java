@@ -17,7 +17,8 @@ public class Problem52 extends ProblemTemplate {
 	}
 
 	private int getSmallestInt(int time) {
-		for (int i = 1;; i++) {
+		int start = 100, end = start * 10 / time;
+		for (int i = start; i <= end; i++) {
 			boolean permute = true;
 			for (int j = 2; j <= time; j++) {
 				if (!isPermuted(i, i * j)) {
@@ -28,7 +29,12 @@ public class Problem52 extends ProblemTemplate {
 			if (permute) {
 				return i;
 			}
+			if (i == end) {
+				start *= 10;
+				end = start * 10 / time;
+			}
 		}
+		return -1;
 	}
 
 	private boolean isPermuted(int i, int j) {
