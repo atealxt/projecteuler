@@ -24,12 +24,15 @@ public class Problem51 extends ProblemTemplate {
 	}
 
 	private int getFirstMember(int numOfFamily) {
-		for (int i = 10;; i++) {
+		for (int i = 11;; i += 2) {
+			if (!Problem3.isPrime(i)) {
+				continue;
+			}
 			int len = String.valueOf(i).length();
-			List<List<Integer>> stars = Problem31.getCombinations(range(0, len));
-			stars.remove(stars.size() - 1);
-			for (List<Integer> star : stars) {
-				List<Integer> family = getFamily(i, star);
+			List<List<Integer>> masks = Problem31.getCombinations(range(0, len));
+			masks.remove(masks.size() - 1);
+			for (List<Integer> mask : masks) {
+				List<Integer> family = getFamily(i, getPattern(i, mask));
 				if (family.size() == numOfFamily) {
 					return family.get(0);
 				}
@@ -37,26 +40,25 @@ public class Problem51 extends ProblemTemplate {
 		}
 	}
 
-	private List<Integer> getFamily(int n, List<Integer> star) {
-		String key = getKey(n, star);
-		if (CACHE.containsKey(key)) {
-			return CACHE.get(key);
+	private List<Integer> getFamily(int n, String pattern) {
+		if (CACHE.containsKey(pattern)) {
+			return CACHE.get(pattern);
 		}
 		List<Integer> family = new ArrayList<>();
-		for (int i = !key.startsWith("*") ? 0 : 1; i < 10; i++) {
-			String s = key.replace("*", String.valueOf(i));
+		for (int i = !pattern.startsWith("*") ? 0 : 1; i < 10; i++) {
+			String s = pattern.replace("*", String.valueOf(i));
 			int x = Integer.parseInt(s);
 			if (Problem3.isPrime(x)) {
 				family.add(x);
 			}
 		}
-		CACHE.put(key, family);
+		CACHE.put(pattern, family);
 		return family;
 	}
 
-	private String getKey(int n, List<Integer> star) {
+	private String getPattern(int n, List<Integer> mask) {
 		StringBuilder key = new StringBuilder(String.valueOf(n));
-		for (Integer x : star) {
+		for (Integer x : mask) {
 			key.setCharAt(x, '*');
 		}
 		return key.toString();
