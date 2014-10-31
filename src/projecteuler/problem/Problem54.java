@@ -80,7 +80,7 @@ public class Problem54 extends ProblemTemplate {
 		boolean flush = true;
 		List<List<Card>> kinds = new ArrayList<List<Card>>(2);
 		List<Card> others = new ArrayList<Card>();
-		for (int i = 0, j = 0; i < cards.size() && j < cards.size(); i++, j++) {
+		for (int i = 0, j = 0; i < cards.size() - 1 && j < cards.size(); i++, j++) {
 			List<Card> kind = new ArrayList<Card>(4);
 			Card cj = cards.get(j);
 			kind.add(cj);
@@ -96,9 +96,6 @@ public class Problem54 extends ProblemTemplate {
 				kinds.add(kind);
 			} else {
 				others.add(cj);
-			}
-			if (i == cards.size() - 1) {
-				continue;
 			}
 			Card ci = cards.get(i);
 			Card ciNext = cards.get(i + 1);
