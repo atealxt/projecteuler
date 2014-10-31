@@ -107,10 +107,10 @@ public class Problem54 extends ProblemTemplate {
 			return new Poker(Poker.RANK_FLUSH, cards);
 		}
 
-		List<List<Card>> kinds = new ArrayList<List<Card>>();
+		List<List<Card>> kinds = new ArrayList<List<Card>>(2);
 		List<Card> others = new ArrayList<Card>();
 		for (int i = 0; i < cards.size(); i++) {
-			List<Card> kind = new ArrayList<Card>();
+			List<Card> kind = new ArrayList<Card>(4);
 			Card ci = cards.get(i);
 			kind.add(ci);
 			for (int j = i + 1; j < cards.size(); j++, i = j - 1) {
