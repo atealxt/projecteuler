@@ -84,7 +84,7 @@ public class Problem54 extends ProblemTemplate {
 			List<Card> kind = new ArrayList<Card>(4);
 			Card cj = cards.get(j);
 			kind.add(cj);
-			for (int p = j + 1; p < cards.size(); p++, j = p - 1) {
+			for (int p = j + 1; p < cards.size(); j = p++) {
 				Card cp = cards.get(p);
 				if (cj.value == cp.value) {
 					kind.add(cp);
