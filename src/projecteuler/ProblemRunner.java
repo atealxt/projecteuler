@@ -9,9 +9,9 @@ public class ProblemRunner {
 		if (args.length == 1) {
 			problems = new String[] { args[0] };
 		} else {
-			problems = new File("./src/projecteuler/problem").list();
+			problems = new File("./src/" + ProblemRunner.class.getPackage().getName().replace(".", "/") + "/problem").list();
 			for (int i = 0; i < problems.length; i++) {
-				problems[i] = problems[i].substring(0, problems[i].length() - 5);
+				problems[i] = problems[i].substring(0, problems[i].length() - ".java".length());
 			}
 		}
 		for (String problem : problems) {
