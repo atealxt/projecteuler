@@ -3,9 +3,9 @@ package projecteuler.problem;
 import java.util.LinkedList;
 import java.util.List;
 
-import projecteuler.ProblemTemplate;
+import projecteuler.Problem;
 
-public class Problem8 extends ProblemTemplate {
+public class Problem8 extends Problem {
 
 	@Override
 	public String getTitle() {

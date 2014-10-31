@@ -3,11 +3,9 @@ package projecteuler.problem;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem50 extends ProblemTemplate {
+public class Problem50 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -16,12 +14,10 @@ public class Problem50 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals(41, getPrimeIsMostConsecutive(100));
-		Assert.assertEquals(953, getPrimeIsMostConsecutive(1000));
 		return String.valueOf(getPrimeIsMostConsecutive(1000000));
 	}
 
-	private int getPrimeIsMostConsecutive(int max) {
+	int getPrimeIsMostConsecutive(int max) {
 		if (max < 2) {
 			return 0;
 		}

@@ -1,10 +1,8 @@
 package projecteuler.problem;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem42 extends ProblemTemplate {
+public class Problem42 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -13,9 +11,6 @@ public class Problem42 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertTrue(isTriangleWord("SKY"));
-		Assert.assertTrue(isTriangleWord("A"));
-		Assert.assertFalse(isTriangleWord("B"));
 		return String.valueOf(getNumOfTriangleWords());
 	}
 
@@ -29,7 +24,7 @@ public class Problem42 extends ProblemTemplate {
 		return count;
 	}
 
-	private boolean isTriangleWord(String word) {
+	boolean isTriangleWord(String word) {
 		int value = getValue(word);
 		double n = Math.sqrt(value * 2 + 0.25) - 0.5; // formula
 		return n == (int) n;

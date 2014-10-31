@@ -3,11 +3,9 @@ package projecteuler.problem;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem44 extends ProblemTemplate {
+public class Problem44 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -16,9 +14,6 @@ public class Problem44 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertTrue(isPentagon(5));
-		Assert.assertTrue(isPentagon(12));
-		Assert.assertFalse(isPentagon(13));
 		return String.valueOf(getD());
 	}
 

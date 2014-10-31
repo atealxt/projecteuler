@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import projecteuler.ProblemTemplate;
+import projecteuler.Problem;
 
-public class Problem5 extends ProblemTemplate {
+public class Problem5 extends Problem {
 
 	@Override
 	public String getTitle() {

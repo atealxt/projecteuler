@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem32 extends ProblemTemplate {
+public class Problem32 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -19,12 +17,6 @@ public class Problem32 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertTrue(isPandigital("123456789"));
-		Assert.assertTrue(isPandigital("567891234"));
-		Assert.assertFalse(isPandigital("1234567890"));
-		Assert.assertFalse(isPandigital("1234567899"));
-		Assert.assertFalse(isPandigital("1"));
-		Assert.assertFalse(isPandigital("123356789"));
 		return String.valueOf(getSumOfProducts());
 	}
 

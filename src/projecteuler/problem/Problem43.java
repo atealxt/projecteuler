@@ -2,11 +2,9 @@ package projecteuler.problem;
 
 import java.util.List;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem43 extends ProblemTemplate {
+public class Problem43 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -15,7 +13,6 @@ public class Problem43 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertTrue(hasProperty(1406357289));
 		return String.valueOf(getSumOfPandigitalNum());
 	}
 
@@ -30,7 +27,7 @@ public class Problem43 extends ProblemTemplate {
 		return sum;
 	}
 
-	private boolean hasProperty(long i) {
+	boolean hasProperty(long i) {
 		int[] numbers = Problem30.getNumbers(i);
 		if (numbers[5] != 5 && numbers[5] != 0) {
 			return false;

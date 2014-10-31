@@ -4,11 +4,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem30 extends ProblemTemplate {
+public class Problem30 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -17,15 +15,10 @@ public class Problem30 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals(19316, getSumOfNum(4));
-		Assert.assertEquals(443839, getSumOfNum(5));
-		Assert.assertArrayEquals(new int[] { 1, 2, 3 }, getNumbers(123));
-		Assert.assertArrayEquals(new int[] { 1, 3, 2 }, getNumbers(132));
-		Assert.assertArrayEquals(new int[] { 5 }, getNumbers(5));
 		return String.valueOf(getSumOfNum(5));
 	}
 
-	private int getSumOfNum(int pow) {
+	int getSumOfNum(int pow) {
 		cache.clear();
 		int total = 0;
 		int begin = 10;

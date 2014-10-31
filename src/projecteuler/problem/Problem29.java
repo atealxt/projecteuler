@@ -4,11 +4,9 @@ import java.math.BigInteger;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem29 extends ProblemTemplate {
+public class Problem29 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -17,19 +15,10 @@ public class Problem29 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals(15, getNumOfTerms(5));
-		Assert.assertEquals(9183, getNumOfTerms(100));
-
-		Assert.assertEquals(-1, logn(2, 6));
-		Assert.assertEquals(2, logn(2, 4));
-		Assert.assertEquals(3, logn(2, 8));
-		Assert.assertEquals(2, logn(4, 16));
-		Assert.assertEquals(15, getNumOfTerms2(5));
-		Assert.assertEquals(9183, getNumOfTerms2(100));
 		return String.valueOf(getNumOfTerms2(100));
 	}
 
-	private int getNumOfTerms(int max) {
+	int getNumOfTerms(int max) {
 		Set<BigInteger> terms = new TreeSet<>();
 		for (int a = 2; a <= max; a++) {
 			for (int b = 2; b <= max; b++) {
@@ -40,7 +29,7 @@ public class Problem29 extends ProblemTemplate {
 		return terms.size();
 	}
 
-	private int getNumOfTerms2(int max) {
+	int getNumOfTerms2(int max) {
 		int n = 0;
 		for (int a = 2; a <= max; a++) {
 			for (int b = 2; b <= max; b++) {
@@ -86,7 +75,7 @@ public class Problem29 extends ProblemTemplate {
 		return false;
 	}
 
-	private int logn(int base, int num) {
+	int logn(int base, int num) {
 		double root = Math.log(num) / Math.log(base);
 		if (root % 1 == 0) {
 			return (int) root;

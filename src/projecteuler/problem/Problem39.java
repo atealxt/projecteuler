@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import projecteuler.ProblemTemplate;
+import projecteuler.Problem;
 
 /** @see Problem9 */
-public class Problem39 extends ProblemTemplate {
+public class Problem39 extends Problem {
 
 	@Override
 	public String getTitle() {

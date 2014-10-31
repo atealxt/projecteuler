@@ -5,11 +5,9 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem26 extends ProblemTemplate {
+public class Problem26 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -18,18 +16,10 @@ public class Problem26 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals(1, getCycleLength("3333333333333333"));// 1/3
-		Assert.assertEquals(1, getCycleLength("16666666666666666"));// 1/6
-		Assert.assertEquals(6, getCycleLength("07692307692307693"));// 1/13
-		Assert.assertEquals(2, getCycleLength("045454545454545456"));// 1/22
-		Assert.assertEquals(3, getCycleLength("0033783783783783786"));// 1/296
-		int decimalOfLongestCycle = getDecimalOfLongestCycle(1000);
-		Assert.assertEquals(983, decimalOfLongestCycle);
-		Assert.assertEquals(decimalOfLongestCycle, getDecimalOfLongestCycleMath(1000));
-		return String.valueOf(decimalOfLongestCycle);
+		return String.valueOf(getDecimalOfLongestCycle(1000));
 	}
 
-	private int getDecimalOfLongestCycle(int n) {
+	int getDecimalOfLongestCycle(int n) {
 		int longestCycle = -1;
 		int decimalOfLongestCycle = -1;
 		for (int i = 6; i < n; i++) {
@@ -53,7 +43,7 @@ public class Problem26 extends ProblemTemplate {
 		return decimalOfLongestCycle;
 	}
 
-	private int getDecimalOfLongestCycleMath(int n) {
+	int getDecimalOfLongestCycleMath(int n) {
 		int x = 0, maxlen = 0;
 		for (int i = 2; i < n; i++) {
 			int rest = 1;
@@ -74,7 +64,7 @@ public class Problem26 extends ProblemTemplate {
 		return x;
 	}
 
-	private int getCycleLength(String str) {
+	int getCycleLength(String str) {
 		int start = 0;
 		do {
 			int loop = 1;

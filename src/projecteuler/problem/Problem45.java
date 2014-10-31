@@ -1,10 +1,8 @@
 package projecteuler.problem;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem45 extends ProblemTemplate {
+public class Problem45 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -13,9 +11,6 @@ public class Problem45 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertTrue(isHexagon(6));
-		Assert.assertTrue(isHexagon(15));
-		Assert.assertFalse(isHexagon(16));
 		return String.valueOf(getNextT(40755));
 	}
 
@@ -32,7 +27,7 @@ public class Problem45 extends ProblemTemplate {
 		}
 	}
 
-	private boolean isHexagon(long number) {
+	boolean isHexagon(long number) {
 		double y = (Math.sqrt(8 * number + 1) + 1) / 4;
 		return y == (int) y;
 	}

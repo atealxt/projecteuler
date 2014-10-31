@@ -2,9 +2,9 @@ package projecteuler.problem;
 
 import java.math.BigInteger;
 
-import projecteuler.ProblemTemplate;
+import projecteuler.Problem;
 
-public class Problem48 extends ProblemTemplate {
+public class Problem48 extends Problem {
 
 	@Override
 	public String getTitle() {

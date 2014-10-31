@@ -5,11 +5,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem41 extends ProblemTemplate {
+public class Problem41 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -18,7 +16,6 @@ public class Problem41 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals(5040, getPermutation(new int[] { 1, 2, 3, 4, 5, 6, 7 }).size());
 		return String.valueOf(getLargestPP2());
 	}
 

@@ -2,11 +2,9 @@ package projecteuler.problem;
 
 import java.util.List;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem47 extends ProblemTemplate {
+public class Problem47 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -15,13 +13,10 @@ public class Problem47 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertTrue(isConsecutive(new int[] { 644, 0, 0 }, 645));
-		Assert.assertEquals(14, getFirstNumOfConsecutive(2));
-		Assert.assertEquals(644, getFirstNumOfConsecutive(3));
 		return String.valueOf(getFirstNumOfConsecutive(4));
 	}
 
-	private int getFirstNumOfConsecutive(int len) {
+	int getFirstNumOfConsecutive(int len) {
 		int[] consecution = new int[len];
 		int cNumber = 0;
 		for (int n = 2;; n++) {
@@ -52,7 +47,7 @@ public class Problem47 extends ProblemTemplate {
 		}
 	}
 
-	private boolean isConsecutive(int[] consecution, int n) {
+	boolean isConsecutive(int[] consecution, int n) {
 		for (int i = consecution.length - 1; i >= 0; i--) {
 			if (consecution[i] == 0) {
 				continue;

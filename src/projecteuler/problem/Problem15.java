@@ -3,9 +3,9 @@ package projecteuler.problem;
 import java.math.BigInteger;
 import java.util.LinkedList;
 
-import projecteuler.ProblemTemplate;
+import projecteuler.Problem;
 
-public class Problem15 extends ProblemTemplate {
+public class Problem15 extends Problem {
 
 	@Override
 	public String getTitle() {

@@ -3,11 +3,9 @@ package projecteuler.problem;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem3 extends ProblemTemplate {
+public class Problem3 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -16,14 +14,10 @@ public class Problem3 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals(5, getLargestPrimeFactor(10));
-		Assert.assertEquals(5, getLargestPrimeFactor(20));
-		Assert.assertEquals(11, getLargestPrimeFactor(66));
-		Assert.assertEquals(29, getLargestPrimeFactor(13195));
 		return String.valueOf(getLargestPrimeFactor(600851475143L));// 6857
 	}
 
-	private long getLargestPrimeFactor(long num) {
+	long getLargestPrimeFactor(long num) {
 		long maxLoop = (long) (Math.sqrt(num) + 1);
 		for (long i = maxLoop; i > 1; i--) {
 			if (num % i != 0) {

@@ -1,10 +1,8 @@
 package projecteuler.problem;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem36 extends ProblemTemplate {
+public class Problem36 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -13,9 +11,6 @@ public class Problem36 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertTrue(isDoubleBasePalindrome(585));
-		Assert.assertFalse(isDoubleBasePalindrome(123));
-		Assert.assertFalse(isDoubleBasePalindrome(131));
 		return String.valueOf(getSumOfPalindromes());
 	}
 
@@ -29,7 +24,7 @@ public class Problem36 extends ProblemTemplate {
 		return sum;
 	}
 
-	private boolean isDoubleBasePalindrome(int n) {
+	boolean isDoubleBasePalindrome(int n) {
 		String s10 = String.valueOf(n);
 		if (!Problem4.isPalindrome(s10)) {
 			return false;

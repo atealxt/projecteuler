@@ -6,11 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem54 extends ProblemTemplate {
+public class Problem54 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -19,23 +17,6 @@ public class Problem54 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals(5, Card.parse("5H").value);
-		Assert.assertEquals("Q", Card.parse("QH").text);
-		Assert.assertEquals("S", Card.parse("AS").suit);
-		List<Card> cards = parseCards("KD 8S 9S 7C 2S");
-		Collections.sort(cards);
-		Assert.assertEquals(Card.parse("2S"), cards.get(0));
-		Assert.assertEquals(Poker.RANK_THREE_OF_A_KIND, recognize(parseCards("2D 9C AS AH AC")).rank);
-		Assert.assertEquals(Poker.RANK_ROYAL_FLUSH, recognize(parseCards("TD JD QD KD AD")).rank);
-		Assert.assertEquals(Poker.RANK_STRAIGHT_FLUSH, recognize(parseCards("9D TD JD QD KD")).rank);
-		Assert.assertEquals(Poker.RANK_FOUR_OF_A_KIND, recognize(parseCards("9D TD TC TS TH")).rank);
-
-		Assert.assertFalse(p1Win(parseCards("5H 5C 6S 7S KD"), parseCards("2C 3S 8S 8D TD")));
-		Assert.assertTrue(p1Win(parseCards("5D 8C 9S JS AC"), parseCards("2C 5C 7D 8S QH")));
-		Assert.assertFalse(p1Win(parseCards("2D 9C AS AH AC"), parseCards("3D 6D 7D TD QD")));
-		Assert.assertTrue(p1Win(parseCards("4D 6S 9H QH QC"), parseCards("3D 6D 7H QD QS")));
-		Assert.assertTrue(p1Win(parseCards("2H 2D 4C 4D 4S"), parseCards("3C 3D 3S 9S 9D")));
-
 		int cntP1Win = 0;
 		for (String poker : POKERS) {
 			if (p1Win(parseCards(poker.substring(0, 14)), parseCards(poker.substring(15)))) {
@@ -45,7 +26,7 @@ public class Problem54 extends ProblemTemplate {
 		return String.valueOf(cntP1Win);
 	}
 
-	private List<Card> parseCards(String poker) {
+	List<Card> parseCards(String poker) {
 		List<Card> cards = new ArrayList<Card>(5);
 		for (String s : poker.split(" ")) {
 			cards.add(Card.parse(s));
@@ -53,7 +34,7 @@ public class Problem54 extends ProblemTemplate {
 		return cards;
 	}
 
-	private boolean p1Win(List<Card> cards1, List<Card> cards2) {
+	boolean p1Win(List<Card> cards1, List<Card> cards2) {
 		Poker p1 = recognize(cards1);
 		Poker p2 = recognize(cards2);
 		if (p1.rank != p2.rank) {
@@ -73,7 +54,7 @@ public class Problem54 extends ProblemTemplate {
 		return false;
 	}
 
-	private Poker recognize(List<Card> cards) {
+	Poker recognize(List<Card> cards) {
 		Collections.sort(cards);
 
 		boolean consecutive = true;

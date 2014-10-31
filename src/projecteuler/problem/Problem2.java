@@ -1,8 +1,8 @@
 package projecteuler.problem;
 
-import projecteuler.ProblemTemplate;
+import projecteuler.Problem;
 
-public class Problem2 extends ProblemTemplate {
+public class Problem2 extends Problem {
 
 	@Override
 	public String getTitle() {

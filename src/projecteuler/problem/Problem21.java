@@ -2,11 +2,9 @@ package projecteuler.problem;
 
 import java.util.List;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem21 extends ProblemTemplate {
+public class Problem21 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -15,8 +13,6 @@ public class Problem21 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals(220, getSumOfDivisors(getSumOfDivisors(220)));
-		Assert.assertEquals(284, getSumOfDivisors(getSumOfDivisors(284)));
 		return String.valueOf(getSumOfAmicableNum(10000));
 	}
 

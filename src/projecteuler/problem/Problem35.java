@@ -1,10 +1,8 @@
 package projecteuler.problem;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem35 extends ProblemTemplate {
+public class Problem35 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -13,13 +11,10 @@ public class Problem35 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertArrayEquals(new int[] { 123, 231, 312 }, getRotations(123));
-		Assert.assertArrayEquals(new int[] { 5 }, getRotations(5));
-		Assert.assertEquals(13, getNumOfCircularPrimes(100));
 		return String.valueOf(getNumOfCircularPrimes(1000000));
 	}
 
-	private int getNumOfCircularPrimes(int max) {
+	int getNumOfCircularPrimes(int max) {
 		int count = 0;
 		for (int i = 2; i < max; i++) {
 			if (!isPrimeable(i)) {
@@ -64,7 +59,7 @@ public class Problem35 extends ProblemTemplate {
 		return false;
 	}
 
-	private int[] getRotations(int n) {
+	int[] getRotations(int n) {
 		int[] numbers = Problem30.getNumbers(n);
 		int[] rotations = new int[numbers.length];
 		for (int i = 0; i < numbers.length; i++) {

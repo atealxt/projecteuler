@@ -1,10 +1,8 @@
 package projecteuler.problem;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem37 extends ProblemTemplate {
+public class Problem37 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -13,7 +11,6 @@ public class Problem37 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertTrue(isTruncatable(3797));
 		return String.valueOf(getSumOfPrimes(11));
 	}
 
@@ -34,7 +31,7 @@ public class Problem37 extends ProblemTemplate {
 		return sum;
 	}
 
-	private boolean isTruncatable(int n) {
+	boolean isTruncatable(int n) {
 		String s = String.valueOf(n);
 		for (int i = 0; i < s.length(); i++) {
 			if (!Problem3.isPrime(Integer.valueOf(s.substring(i)))) {

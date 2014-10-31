@@ -2,9 +2,9 @@ package projecteuler.problem;
 
 import java.util.Calendar;
 
-import projecteuler.ProblemTemplate;
+import projecteuler.Problem;
 
-public class Problem19 extends ProblemTemplate {
+public class Problem19 extends Problem {
 
 	@Override
 	public String getTitle() {

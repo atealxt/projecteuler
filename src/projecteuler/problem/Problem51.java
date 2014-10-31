@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem51 extends ProblemTemplate {
+public class Problem51 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -18,12 +16,10 @@ public class Problem51 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals(13, getFirstMember(6));
-		Assert.assertEquals(56003, getFirstMember(7));
 		return String.valueOf(getFirstMember(8));
 	}
 
-	private int getFirstMember(int numOfFamily) {
+	int getFirstMember(int numOfFamily) {
 		for (int i = 11;; i += 2) {
 			if (!Problem3.isPrime(i)) {
 				continue;

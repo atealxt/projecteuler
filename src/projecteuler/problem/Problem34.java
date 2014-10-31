@@ -1,10 +1,8 @@
 package projecteuler.problem;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem34 extends ProblemTemplate {
+public class Problem34 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -13,7 +11,6 @@ public class Problem34 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertTrue(isCurious(145));
 		return String.valueOf(getSumOfNumbers());
 	}
 
@@ -28,7 +25,7 @@ public class Problem34 extends ProblemTemplate {
 		return sum;
 	}
 
-	private boolean isCurious(int n) {
+	boolean isCurious(int n) {
 		int sum = 0;
 		int _n = n;
 		while (_n > 0) {

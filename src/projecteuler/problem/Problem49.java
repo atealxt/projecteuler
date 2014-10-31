@@ -6,11 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem49 extends ProblemTemplate {
+public class Problem49 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -19,11 +17,10 @@ public class Problem49 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals("148748178147", getConcatenatingSequence2(0));
 		return String.valueOf(getConcatenatingSequence2(1488));
 	}
 
-	private String getConcatenatingSequence2(int min) {
+	String getConcatenatingSequence2(int min) {
 		Set<Long> cache = new HashSet<>();
 		for (int i = min;; i++) {
 			if (!Problem3.isPrime(i)) {

@@ -2,9 +2,9 @@ package projecteuler.problem;
 
 import java.util.Arrays;
 
-import projecteuler.ProblemTemplate;
+import projecteuler.Problem;
 
-public class Problem52 extends ProblemTemplate {
+public class Problem52 extends Problem {
 
 	@Override
 	public String getTitle() {

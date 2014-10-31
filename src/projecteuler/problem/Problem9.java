@@ -1,10 +1,8 @@
 package projecteuler.problem;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem9 extends ProblemTemplate {
+public class Problem9 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -13,11 +11,10 @@ public class Problem9 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals(60, getProductOfPythagoreanTriplet(12)); // a:3 b:4 c:5
 		return String.valueOf(getProductOfPythagoreanTriplet(1000));
 	}
 
-	private int getProductOfPythagoreanTriplet(int sum) {
+	int getProductOfPythagoreanTriplet(int sum) {
 		int a = 0, b = 0, c = 0, m = 0, n = 0;
 		for (n = 2;; n++) {
 			m = (sum / 2 - (int) Math.pow(n, 2)) / n; // get m by n : a + b + c = sum = n^2 - m^2 + 2nm + n^2 + m^2

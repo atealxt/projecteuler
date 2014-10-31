@@ -2,11 +2,9 @@ package projecteuler.problem;
 
 import java.util.Arrays;
 
-import org.junit.Assert;
+import projecteuler.Problem;
 
-import projecteuler.ProblemTemplate;
-
-public class Problem24 extends ProblemTemplate {
+public class Problem24 extends Problem {
 
 	@Override
 	public String getTitle() {
@@ -15,9 +13,6 @@ public class Problem24 extends ProblemTemplate {
 
 	@Override
 	public String getResult() {
-		Assert.assertEquals("[1, 1, 0, 0]", getLexicographicPermutation(new int[] { 0, 0, 1, 1 }, 6));
-		Assert.assertEquals("Not found!", getLexicographicPermutation(new int[] { 0, 0, 1, 1 }, 7));
-		Assert.assertEquals("[2, 7, 8, 3, 9, 1, 5, 4, 6, 0]", getPermutation(1000000));
 		return String.valueOf(getPermutation(1000000));
 	}
 
@@ -26,7 +21,7 @@ public class Problem24 extends ProblemTemplate {
 	}
 
 	/** Base on ASC ordered */
-	private String getLexicographicPermutation(int[] arr, int nth) {
+	String getLexicographicPermutation(int[] arr, int nth) {
 		int[] array = Arrays.copyOf(arr, arr.length);
 		int i = array.length - 1;
 		int cnt = 0;
