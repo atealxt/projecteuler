@@ -65,7 +65,7 @@ public class Problem54 extends Problem {
 			List<Card> kind = new ArrayList<Card>(4);
 			Card cj = cards.get(j);
 			kind.add(cj);
-			for (int p = j + 1; p < cards.size(); j = p++) {
+			for (int p = j + 1; p < cards.size(); j = p++) { // TODO remove this loop
 				Card cp = cards.get(p);
 				if (cj.value == cp.value) {
 					kind.add(cp);
