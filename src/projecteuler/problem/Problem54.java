@@ -78,13 +78,34 @@ public class Problem54 extends ProblemTemplate {
 
 		boolean consecutive = true;
 		boolean flush = true;
-		for (int i = 0; i < cards.size() - 1; i++) {
+		List<List<Card>> kinds = new ArrayList<List<Card>>(2);
+		List<Card> others = new ArrayList<Card>();
+		for (int i = 0, j = 0; i < cards.size() && j < cards.size(); i++, j++) {
+			List<Card> kind = new ArrayList<Card>(4);
+			Card cj = cards.get(j);
+			kind.add(cj);
+			for (int p = j + 1; p < cards.size(); p++, j = p - 1) {
+				Card cp = cards.get(p);
+				if (cj.value == cp.value) {
+					kind.add(cp);
+				} else {
+					break;
+				}
+			}
+			if (kind.size() > 1) {
+				kinds.add(kind);
+			} else {
+				others.add(cj);
+			}
+			if (i == cards.size() - 1) {
+				continue;
+			}
 			Card ci = cards.get(i);
-			Card cj = cards.get(i + 1);
-			if (consecutive && cj.value - ci.value != 1) {
+			Card ciNext = cards.get(i + 1);
+			if (consecutive && ciNext.value - ci.value != 1) {
 				consecutive = false;
 			}
-			if (flush && !cj.suit.equals(ci.suit)) {
+			if (flush && !ciNext.suit.equals(ci.suit)) {
 				flush = false;
 			}
 			if (i != cards.size() - 2) {
@@ -92,7 +113,7 @@ public class Problem54 extends ProblemTemplate {
 			}
 			if (consecutive) {
 				if (flush) {
-					if (cj.text == "A") {
+					if (ciNext.text == "A") {
 						return new Poker(Poker.RANK_ROYAL_FLUSH, cards);
 					} else {
 						return new Poker(Poker.RANK_STRAIGHT_FLUSH, cards);
@@ -107,26 +128,6 @@ public class Problem54 extends ProblemTemplate {
 			return new Poker(Poker.RANK_FLUSH, cards);
 		}
 
-		List<List<Card>> kinds = new ArrayList<List<Card>>(2);
-		List<Card> others = new ArrayList<Card>();
-		for (int i = 0; i < cards.size(); i++) {
-			List<Card> kind = new ArrayList<Card>(4);
-			Card ci = cards.get(i);
-			kind.add(ci);
-			for (int j = i + 1; j < cards.size(); j++, i = j - 1) {
-				Card cj = cards.get(j);
-				if (ci.value == cj.value) {
-					kind.add(cj);
-				} else {
-					break;
-				}
-			}
-			if (kind.size() > 1) {
-				kinds.add(kind);
-			} else {
-				others.add(ci);
-			}
-		}
 		if (kinds.size() == 0) {
 			return new Poker(Poker.RANK_HIGH_CARD, new ArrayList<Card>(), cards);
 		}
