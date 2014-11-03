@@ -49,6 +49,8 @@ public class Problem3 extends Problem {
 	private static boolean checkIsPrime(long n) {
 		if (n == 1) {
 			return false;
+		} else if (n < 1) {
+			return false;
 		} else if (n < 4) {
 			return true;
 		} else if (n % 2 == 0) {
