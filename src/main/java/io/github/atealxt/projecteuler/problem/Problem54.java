@@ -5,6 +5,7 @@ import io.github.atealxt.projecteuler.Problem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,26 +60,32 @@ public class Problem54 extends Problem {
 
 		boolean consecutive = true;
 		boolean flush = true;
-		List<List<Card>> kinds = new ArrayList<List<Card>>(2);
-		List<Card> others = new ArrayList<Card>();
-		for (int i = 0, j = 0; i < cards.size() - 1 && j < cards.size(); i++, j++) {
-			List<Card> kind = new ArrayList<Card>(4);
-			Card cj = cards.get(j);
-			kind.add(cj);
-			for (int p = j + 1; p < cards.size(); j = p++) { // TODO remove this loop
-				Card cp = cards.get(p);
-				if (cj.value == cp.value) {
-					kind.add(cp);
+		Map<Integer, Card> singles = new LinkedHashMap<Integer, Card>();
+		Map<Integer, List<Card>> pairs = new LinkedHashMap<Integer, List<Card>>();
+		for (int i = 0; i < cards.size(); i++) {
+
+			Card ci = cards.get(i);
+
+			List<Card> pair = pairs.get(ci.value);
+			if (pair != null) {
+				pair.add(ci);
+			} else {
+				Card single = singles.get(ci.value);
+				if (single != null) {
+					singles.remove(ci.value);
+					pair = new ArrayList<Card>(2);
+					pair.add(single);
+					pair.add(ci);
+					pairs.put(ci.value, pair);
 				} else {
-					break;
+					singles.put(ci.value, ci);
 				}
 			}
-			if (kind.size() > 1) {
-				kinds.add(kind);
-			} else {
-				others.add(cj);
+
+			if (i == cards.size() - 1) {
+				break;
 			}
-			Card ci = cards.get(i);
+
 			Card ciNext = cards.get(i + 1);
 			if (consecutive && ciNext.value - ci.value != 1) {
 				consecutive = false;
@@ -106,9 +113,13 @@ public class Problem54 extends Problem {
 			return new Poker(Poker.RANK_FLUSH, cards);
 		}
 
-		if (kinds.size() == 0) {
+		if (pairs.size() == 0) {
 			return new Poker(Poker.RANK_HIGH_CARD, new ArrayList<Card>(), cards);
 		}
+
+		List<List<Card>> kinds = new ArrayList<List<Card>>(pairs.values());
+		List<Card> others = new ArrayList<Card>(singles.values());
+
 		if (kinds.size() == 1) {
 			if (kinds.get(0).size() == 4) {
 				return new Poker(Poker.RANK_FOUR_OF_A_KIND, kinds.get(0), others);
