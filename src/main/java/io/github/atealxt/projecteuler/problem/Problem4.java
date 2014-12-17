@@ -34,8 +34,18 @@ public class Problem4 extends Problem {
 	}
 
 	static boolean isPalindrome(String s) {
-		for (int i = 0; i <= s.length() / 2; i++) {
-			if (s.charAt(i) != s.charAt(s.length() - i - 1)) {
+		if (s == null || s.isEmpty()) {
+			return false;
+		}
+		if (s.length() == 1) {
+			return true;
+		}
+		int mid = s.length() / 2, left = mid - 1, right = mid;
+		if (s.length() % 2 != 0) {
+			right = mid + 1;
+		}
+		for (int i = 0; i < mid; i++) {
+			if (s.charAt(left - i) != s.charAt(right + i)) {
 				return false;
 			}
 		}
