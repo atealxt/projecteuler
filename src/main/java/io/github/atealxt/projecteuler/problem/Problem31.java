@@ -47,6 +47,7 @@ public class Problem31 extends Problem {
 		return ways;
 	}
 
+	// can be use to solve problem like: input "ABC", output {"ABC", "AB C", "A BC", "A B C"}
 	static List<List<Integer>> getCombinations(int[] array) {
 		List<List<Integer>> combinations = new ArrayList<>();
 		int[] code = new int[array.length];
