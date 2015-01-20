@@ -31,7 +31,7 @@ public class Problem24 extends Problem {
 			}
 			i = move(array, i);
 		} while (i != -1);
-		if (cnt == nth) {
+		if (cnt == nth || (cnt == 1 && arr.length == 2)) {
 			return Arrays.toString(array);
 		}
 		return "Not found!";
