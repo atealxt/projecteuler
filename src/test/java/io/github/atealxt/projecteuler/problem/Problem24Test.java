@@ -11,6 +11,9 @@ public class Problem24Test extends TestBase {
 		Assert.assertEquals("[0, 1]", ((Problem24) problem).getLexicographicPermutation(new int[] { 0, 1 }, 1));
 		Assert.assertEquals("[1, 0]", ((Problem24) problem).getLexicographicPermutation(new int[] { 1, 0 }, 1));
 		Assert.assertEquals("[1, 0]", ((Problem24) problem).getLexicographicPermutation(new int[] { 0, 1 }, 2));
+		Assert.assertEquals("[0, 0]", ((Problem24) problem).getLexicographicPermutation(new int[] { 0, 0 }, 1));
+		Assert.assertEquals("[1, 1]", ((Problem24) problem).getLexicographicPermutation(new int[] { 1, 1 }, 1));
+		Assert.assertEquals("Not found!", ((Problem24) problem).getLexicographicPermutation(new int[] { 1, 1 }, 2));
 		Assert.assertEquals("[0, 2, 1]", ((Problem24) problem).getLexicographicPermutation(new int[] { 0, 1, 2 }, 2));
 		Assert.assertEquals("[1, 0, 2]", ((Problem24) problem).getLexicographicPermutation(new int[] { 0, 1, 2 }, 3));
 		Assert.assertEquals("[2, 1, 0]", ((Problem24) problem).getLexicographicPermutation(new int[] { 0, 1, 2 }, 6));
